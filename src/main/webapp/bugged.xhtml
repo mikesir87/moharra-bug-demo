@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+  <title>Bug Demo</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
+</h:head>
+
+<h:body>
+
+  <nav class="navbar navbar-default" role="navigation" style="border-radius:0px;">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsible">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.xhtml">Moharra JSF Bug Demo</a>
+      </div>
+  
+      <div class="collapse navbar-collapse" id="navbar-collapsible">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="bugged.xhtml">Bugged Version</a></li>
+          <li><a href="patched.xhtml">Patched Version</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container" style="padding-top:30px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Moharra JSF Javascript Bug Demo</h2>
+        <p>Steps to complete:</p>
+        <ol>
+          <li>Submit the form with an empty field BEFORE doing anything. Notice the error message.</li>
+          <li><a href="javascript:window.location.reload();">Refresh the page</a> and enter a name</li>
+          <li>Blur the field (fire the valueChange) and watch the ajax update the panel</li>
+          <li>Clear out the name field and submit the form</li>
+          <li>Notice that there are NO error messages and nothing seems to happen!</li>
+          <li>Submit a valid form and look! Still nothing happens to our webpage (although it did submit through the iframe)! :(</li>
+        </ol>
+      </div>
+    </div>
+    
+    <hr />
+    
+    <h:form styleClass="form-horizontal" enctype="multipart/form-data">
+      <div class="col-md-6 col-md-push-3">
+        <h:panelGroup id="nameGreeting">
+          <h3>Hello <h:outputText value="#{empty demoBean.name ? '[No Name]' : demoBean.name}" /></h3>
+        </h:panelGroup>
+      </div>
+    
+      <div class="clearfix"></div>
+    
+      <div class="form-group">
+        <label for="nameField" class="control-label col-md-3">Your Name</label>
+        <div class="col-md-6">
+          <h:inputText value="#{demoBean.name}" styleClass="form-control" required="true" requiredMessage="Name is required">
+            <f:ajax event="valueChange" render="nameGreeting" />
+          </h:inputText>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-md-push-3">
+        <h:commandButton action="#{demoBean.submit}" value="Submit" styleClass="btn btn-primary" />
+      </div>
+      
+    </h:form>
+  </div>
+</h:body>
+
+</html>

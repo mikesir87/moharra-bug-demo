@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+  <title>Bug Demo</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" />
+</h:head>
+
+<h:body>
+
+  <nav class="navbar navbar-default" role="navigation" style="border-radius:0px;">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsible">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Moharra JSF Bug Demo</a>
+      </div>
+  
+      <div class="collapse navbar-collapse" id="navbar-collapsible">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="bugged.xhtml">Bugged Version</a></li>
+          <li><a href="patched.xhtml">Patched Version</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container" style="padding-top:30px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Moharra JSF Javascript Bug Demo</h2>
+        <p>Both pages contain the same form, one with the current version of the JSF Javascript API and the other with a patched version.</p>
+        <p>Each has an encoding type of <strong>multipart/form-data</strong> and a field that triggers a panel to be updated using <strong>f:ajax</strong>.</p>
+        <p>In the bugged version, the form retains its target to the iframe, which causes the actual form submission to be performed in the iframe, which is not desired.</p>
+      </div>
+    </div>
+    
+    <hr />
+    
+    <div class="row">
+      <div class="col-md-2 col-md-push-2 text-center">
+        <a href="bugged.xhtml" class="btn btn-primary">Bugged Version</a>
+      </div>
+      <div class="col-md-6 col-md-push-2">
+        This page demonstrates the bug.  When the ajax update occurs, the iframe is created and the form's target is updated to point to it.  However, once the form has been submitted, the target remains pointing to the iframe, causing the actual form submit to go through the iframe.
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:30px;">
+      <div class="col-md-2 col-md-push-2 text-center">
+        <a href="bugged.xhtml" class="btn btn-primary">Patched Version</a>
+      </div>
+      <div class="col-md-6 col-md-push-2">
+        This page demonstrates the patch.  In this case, once the form has been submitted, the target for the form is returned to the original target value, allowing for all subsequent form submissions to work as expected.
+      </div>
+    </div>
+  </div>
+</h:body>
+
+</html>
