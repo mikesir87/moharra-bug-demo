@@ -1,0 +1,20 @@
+Index: jsf-api/src/main/resources/jsf.js
+===================================================================
+--- jsf-api/src/main/resources/jsf.js	(revision 13723)
++++ jsf-api/src/main/resources/jsf.js	(working copy)
+@@ -294,6 +294,7 @@
+              */
+             send:function(data) {
+                 var evt = {};
++                var originalFormTarget = this.context.form.target;
+                 this.context.form.target = this.frame.name;
+                 this.context.form.method = this.method;
+                 if (this.url) {
+@@ -327,6 +328,7 @@
+                 }
+                 this.requestParams.push(this.FRAME_PARTIAL_ID);
+                 this.context.form.submit();
++                this.context.form.target = originalFormTarget;
+             },
+             
+             /**
