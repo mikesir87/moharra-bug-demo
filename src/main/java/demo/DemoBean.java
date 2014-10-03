@@ -22,10 +22,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
- * DESCRIBE THE TYPE HERE.
+ * A demo bean.
  *
- * @author Michael Irwin
- * @author Chris Dunavant
+ * @author Micjael Irwin
  */
 @Named
 @RequestScoped
