@@ -4,6 +4,8 @@ This repository provides a very basic web application to demonstrate a bug in th
 
 ## Details of the Bug
 
+JIRA Issue: https://java.net/jira/browse/JAVASERVERFACES-3471
+
 When the JSF AJAX Javascript library discovers a form with an encoding type of **multipart/form-data**, it creates an iframe for all f:ajax requests.
 
 When the iframe is created (lazily done on the first f:ajax trigger), the form's tag is updated with a target attribute to point to the iframe.  This causes all form submits to be posted to the iframe, from which the results are pulled and the page is updated.
