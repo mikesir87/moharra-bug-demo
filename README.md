@@ -21,8 +21,8 @@ The patch is quite simple... return the form's target back to its original value
 Simply checkout the code and run
 
 ```
-mvn wildfly:run
+mvn tomcat7:run-war
 ```
 
-A Wildfly instance will download, startup, and then deploy your app.  You can then access it at http://localhost:8080/demo.  From there, you'll have the option to view the bugged or patched demos.
+A Tomcat instance will download, startup, and then deploy your app.  You can then access it at http://localhost:8080/demo.  From there, you'll have the option to view the bugged or patched demos.
 

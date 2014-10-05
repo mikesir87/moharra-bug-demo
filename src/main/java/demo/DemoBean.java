@@ -18,16 +18,16 @@
  */
 package demo;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  * A demo bean.
  *
- * @author Micjael Irwin
+ * @author Michael Irwin
  */
-@Named
 @RequestScoped
+@ManagedBean
 public class DemoBean {
 
   private String name;
